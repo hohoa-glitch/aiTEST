@@ -1,8 +1,6 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { VideoAnalysisResponse, TargetAudience } from "../types";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-
 // Helper to convert File to Base64
 const fileToGenerativePart = async (file: File): Promise<{ inlineData: { data: string; mimeType: string } }> => {
   return new Promise((resolve, reject) => {
@@ -24,6 +22,15 @@ const fileToGenerativePart = async (file: File): Promise<{ inlineData: { data: s
 
 export const generateHookTitles = async (videoFile: File, audience: TargetAudience): Promise<VideoAnalysisResponse> => {
   try {
+    // Safely access API_KEY to avoid ReferenceError if process is not defined in the browser environment.
+    const apiKey = (typeof process !== 'undefined' && process.env) ? process.env.API_KEY : undefined;
+
+    if (!apiKey) {
+      throw new Error("API_KEY is missing. Please check your environment configuration.");
+    }
+
+    const ai = new GoogleGenAI({ apiKey });
+
     const videoPart = await fileToGenerativePart(videoFile);
 
     // Prompt Strategy Selection

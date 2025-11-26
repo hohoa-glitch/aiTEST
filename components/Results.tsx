@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { VideoAnalysisResponse, TargetAudience } from '../types';
 import { Copy, Check, Sparkles, Hash, RefreshCw, RotateCcw, TrendingUp, Search, Globe, Flag, MessageSquareText } from 'lucide-react';
 
@@ -19,7 +19,7 @@ export const Results: React.FC<ResultsProps> = ({
   isRegenerating,
   currentAudience
 }) => {
-  const [copiedState, setCopiedState] = React.useState<{id: string, type: string} | null>(null);
+  const [copiedState, setCopiedState] = useState<{id: string, type: string} | null>(null);
 
   const handleCopy = (text: string, id: string, type: string) => {
     navigator.clipboard.writeText(text);
