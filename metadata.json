@@ -1,0 +1,5 @@
+{
+  "name": "TubeHook AI",
+  "description": "Analyze video content to generate viral, high-CTR YouTube titles using Gemini AI.",
+  "requestFramePermissions": []
+}
