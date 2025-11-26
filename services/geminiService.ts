@@ -23,7 +23,7 @@ const fileToGenerativePart = async (file: File): Promise<{ inlineData: { data: s
 export const generateHookTitles = async (videoFile: File, audience: TargetAudience): Promise<VideoAnalysisResponse> => {
   try {
     // Safely access API_KEY to avoid ReferenceError if process is not defined in the browser environment.
-    const apiKey = (typeof process !== 'undefined' && process.env) ? process.env.API_KEY : undefined;
+    cconst apiKey = "AIzaSyDXI5wn5HwU-CaMLjcTZCYjpihh5M6-sV4";
 
     if (!apiKey) {
       throw new Error("API_KEY is missing. Please check your environment configuration.");
